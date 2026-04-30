@@ -1,0 +1,572 @@
+{{ 'clara-reyes-luxury.css' | asset_url | stylesheet_tag }}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+{%- liquid
+  assign total = section.blocks.size
+  assign sum = 0
+  for block in section.blocks
+    assign sum = sum | plus: block.settings.rating
+  endfor
+  if total > 0
+    assign avg = sum | times: 10 | divided_by: total
+    assign avg_int = avg | divided_by: 10
+    assign avg_dec = avg | modulo: 10
+  endif
+-%}
+
+<section class="cr-reviews" id="cr-reviews-{{ section.id }}">
+  <div class="cr-reviews__inner">
+
+    <div class="cr-reviews__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="cr-reviews__header-left">
+        <span class="cr-section-label__text" style="font-family:'Jost',sans-serif;font-size:1rem;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:#C9A84C;display:block;margin-bottom:1.6rem;">Opiniones de clientas</span>
+        <div class="cr-reviews__aggregate">
+          <span class="cr-reviews__avg">{{ avg_int }}<span class="cr-reviews__avg-dec">.{{ avg_dec }}</span></span>
+          <div class="cr-reviews__aggregate-right">
+            <div class="cr-reviews__stars-row">
+              {%- for i in (1..5) -%}
+                {%- assign prev_i = i | minus: 1 -%}
+                {%- assign star_class = 'cr-star--empty' -%}
+                {%- if avg_int >= i -%}
+                  {%- assign star_class = 'cr-star--full' -%}
+                {%- elsif avg_int == prev_i and avg_dec >= 5 -%}
+                  {%- assign star_class = 'cr-star--half' -%}
+                {%- endif -%}
+                <svg class="cr-star {{ star_class }}" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l1.85 4.9 5.15.45-3.9 3.4 1.15 5.1L8 12.15 3.75 14.85l1.15-5.1-3.9-3.4 5.15-.45z"/></svg>
+              {%- endfor -%}
+            </div>
+            <span class="cr-reviews__count">{{ total }} reseñas verificadas</span>
+          </div>
+        </div>
+      </div>
+      <div class="cr-reviews__header-right">
+        {%- assign pct5 = 0 %}
+        {%- assign pct4 = 0 %}
+        {%- assign pct3 = 0 %}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.rating == 5 -%}{%- assign pct5 = pct5 | plus: 1 -%}{%- endif -%}
+          {%- if block.settings.rating == 4 -%}{%- assign pct4 = pct4 | plus: 1 -%}{%- endif -%}
+          {%- if block.settings.rating == 3 -%}{%- assign pct3 = pct3 | plus: 1 -%}{%- endif -%}
+        {%- endfor -%}
+        {%- assign w5 = pct5 | times: 100 | divided_by: total -%}
+        {%- assign w4 = pct4 | times: 100 | divided_by: total -%}
+        {%- assign w3 = pct3 | times: 100 | divided_by: total -%}
+        <div class="cr-reviews__bars">
+          <div class="cr-reviews__bar-row"><span>5</span><div class="cr-reviews__bar-track"><div class="cr-reviews__bar-fill" style="width:{{ w5 }}%"></div></div><span>{{ pct5 }}</span></div>
+          <div class="cr-reviews__bar-row"><span>4</span><div class="cr-reviews__bar-track"><div class="cr-reviews__bar-fill" style="width:{{ w4 }}%"></div></div><span>{{ pct4 }}</span></div>
+          <div class="cr-reviews__bar-row"><span>3</span><div class="cr-reviews__bar-track"><div class="cr-reviews__bar-fill" style="width:{{ w3 }}%"></div></div><span>{{ pct3 }}</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-reviews__slider-wrap">
+      <div class="swiper cr-reviews__swiper">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            <div class="swiper-slide cr-review-card" {{ block.shopify_attributes }}>
+              <div class="cr-review-card__inner">
+                <div class="cr-review-card__top-bar"></div>
+                <div class="cr-review-card__stars">
+                  {%- for i in (1..5) -%}
+                    <svg class="cr-star{% if block.settings.rating >= i %} cr-star--full{% else %} cr-star--empty{% endif %}" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l1.85 4.9 5.15.45-3.9 3.4 1.15 5.1L8 12.15 3.75 14.85l1.15-5.1-3.9-3.4 5.15-.45z"/></svg>
+                  {%- endfor -%}
+                </div>
+                {%- if block.settings.headline != blank -%}
+                  <h3 class="cr-review-card__headline">{{ block.settings.headline }}</h3>
+                {%- endif -%}
+                <p class="cr-review-card__text">{{ block.settings.review_text }}</p>
+                <div class="cr-review-card__footer">
+                  <div class="cr-review-card__author-info">
+                    <span class="cr-review-card__name">{{ block.settings.reviewer_name }}</span>
+                    {%- if block.settings.location != blank -%}
+                      <span class="cr-review-card__location">{{ block.settings.location }}</span>
+                    {%- endif -%}
+                  </div>
+                  <div class="cr-review-card__meta">
+                    {%- if block.settings.date != blank -%}
+                      <span class="cr-review-card__date">{{ block.settings.date }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.verified -%}
+                      <span class="cr-review-card__badge">
+                        <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M6.5 11.5L3 8l1.4-1.4 2.1 2.1 5.1-5.1L13 5z" fill="#C9A84C"/></svg>
+                        Compra verificada
+                      </span>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="cr-reviews__nav">
+        <button class="cr-reviews__btn cr-reviews__btn--prev" aria-label="Anterior">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="swiper-pagination cr-reviews__pagination"></div>
+        <button class="cr-reviews__btn cr-reviews__btn--next" aria-label="Siguiente">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .cr-reviews {
+    background: #0D0D0D !important;
+    padding: 9rem 0 7rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .cr-reviews::before {
+    content: '\201C' !important;
+    position: absolute !important;
+    top: -2rem !important;
+    left: 4rem !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 28rem !important;
+    font-weight: 300 !important;
+    color: rgba(201,168,76,0.04) !important;
+    line-height: 1 !important;
+    pointer-events: none !important;
+  }
+  .cr-reviews__inner {
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+    padding: 0 4rem !important;
+  }
+  .cr-reviews__header {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6rem !important;
+    margin-bottom: 6rem !important;
+    align-items: start !important;
+  }
+  .cr-reviews__aggregate {
+    display: flex !important;
+    align-items: center !important;
+    gap: 2.4rem !important;
+    margin-top: 0.8rem !important;
+  }
+  .cr-reviews__avg {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 9rem !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
+    color: #FFFFFF !important;
+  }
+  .cr-reviews__avg-dec {
+    font-size: 5rem !important;
+    color: #C9A84C !important;
+  }
+  .cr-reviews__stars-row {
+    display: flex !important;
+    gap: 0.4rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+  .cr-reviews__count {
+    font-family: 'Jost', sans-serif !important;
+    font-size: 1.2rem !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.1em !important;
+    color: rgba(255,255,255,0.45) !important;
+  }
+  .cr-reviews__bars {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+    justify-content: center !important;
+    height: 100% !important;
+    padding-top: 2rem !important;
+  }
+  .cr-reviews__bar-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.2rem !important;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 1.2rem !important;
+    font-weight: 300 !important;
+    color: rgba(255,255,255,0.5) !important;
+  }
+  .cr-reviews__bar-row > span:first-child {
+    width: 1rem !important;
+    text-align: right !important;
+  }
+  .cr-reviews__bar-track {
+    flex: 1 !important;
+    height: 2px !important;
+    background: rgba(255,255,255,0.08) !important;
+    border-radius: 2px !important;
+    overflow: hidden !important;
+  }
+  .cr-reviews__bar-fill {
+    height: 100% !important;
+    background: linear-gradient(90deg, #C9A84C, #8B6914) !important;
+    border-radius: 2px !important;
+    transition: width 1.2s cubic-bezier(0.25,0.46,0.45,0.94) !important;
+  }
+  .cr-reviews__slider-wrap {
+    position: relative !important;
+  }
+  .cr-reviews__swiper {
+    overflow: visible !important;
+  }
+  .cr-review-card {
+    height: auto !important;
+  }
+  .cr-review-card__inner {
+    background: #FAF8F5 !important;
+    padding: 0 2.4rem 2.4rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+  }
+  .cr-review-card__inner:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 16px 48px rgba(201,168,76,0.15) !important;
+  }
+  .cr-review-card__top-bar {
+    height: 3px !important;
+    background: linear-gradient(90deg, #C9A84C, #8B6914, transparent) !important;
+    margin: 0 -2.4rem 2rem !important;
+    transform: scaleX(0.4) !important;
+    transform-origin: left !important;
+    transition: transform 0.5s ease !important;
+  }
+  .cr-review-card__inner:hover .cr-review-card__top-bar {
+    transform: scaleX(1) !important;
+  }
+  .cr-review-card__stars {
+    display: flex !important;
+    gap: 0.3rem !important;
+    margin-bottom: 1.2rem !important;
+  }
+  .cr-star {
+    width: 1.4rem !important;
+    height: 1.4rem !important;
+    fill: transparent !important;
+    stroke: none !important;
+  }
+  .cr-star--full { fill: #C9A84C !important; }
+  .cr-star--half { fill: url(#cr-half) !important; }
+  .cr-star--empty { fill: rgba(201,168,76,0.2) !important; }
+  .cr-review-card__headline {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.8rem !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+    letter-spacing: 0.02em !important;
+    color: #1A1A1A !important;
+    margin-bottom: 1rem !important;
+    line-height: 1.2 !important;
+  }
+  .cr-review-card__text {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.55rem !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    line-height: 1.6 !important;
+    color: #3A3A3A !important;
+    flex: 1 !important;
+    margin-bottom: 2rem !important;
+  }
+  .cr-review-card__footer {
+    border-top: 1px solid rgba(201,168,76,0.2) !important;
+    padding-top: 2rem !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    gap: 1.6rem !important;
+  }
+  .cr-review-card__name {
+    display: block !important;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 1.3rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.08em !important;
+    color: #1A1A1A !important;
+    text-transform: uppercase !important;
+  }
+  .cr-review-card__location {
+    display: block !important;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 300 !important;
+    color: #5A5A5A !important;
+    margin-top: 0.3rem !important;
+  }
+  .cr-review-card__meta {
+    text-align: right !important;
+  }
+  .cr-review-card__date {
+    display: block !important;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 300 !important;
+    color: #8A8A8A !important;
+    margin-bottom: 0.6rem !important;
+  }
+  .cr-review-card__badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.06em !important;
+    color: #C9A84C !important;
+    border: 1px solid rgba(201,168,76,0.35) !important;
+    padding: 0.3rem 0.8rem !important;
+  }
+  .cr-reviews__nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2rem !important;
+    margin-top: 3.2rem !important;
+  }
+  .cr-reviews__btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 5.2rem !important;
+    height: 5.2rem !important;
+    border: 1.5px solid rgba(201,168,76,0.5) !important;
+    background: rgba(201,168,76,0.06) !important;
+    color: rgba(255,255,255,0.8) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    flex-shrink: 0 !important;
+  }
+  .cr-reviews__btn:hover {
+    background: linear-gradient(135deg, #C9A84C, #8B6914) !important;
+    border-color: transparent !important;
+    color: #FFFFFF !important;
+    transform: scale(1.05) !important;
+  }
+  .cr-reviews__pagination {
+    display: flex !important;
+    gap: 0.8rem !important;
+    align-items: center !important;
+  }
+  .cr-reviews__pagination .swiper-pagination-bullet {
+    width: 6px !important;
+    height: 6px !important;
+    background: rgba(255,255,255,0.3) !important;
+    opacity: 1 !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+  }
+  .cr-reviews__pagination .swiper-pagination-bullet-active {
+    background: #C9A84C !important;
+    width: 2.4rem !important;
+    border-radius: 3px !important;
+  }
+  @media screen and (max-width: 989px) {
+    .cr-reviews__header {
+      grid-template-columns: 1fr !important;
+      gap: 3.2rem !important;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    .cr-reviews__inner { padding: 0 1.6rem !important; }
+    .cr-reviews__avg { font-size: 6rem !important; }
+    .cr-review-card__inner { padding: 0 2rem 2rem !important; }
+    .cr-review-card__top-bar { margin: 0 -2rem 1.6rem !important; }
+    .cr-review-card__text { font-size: 1.5rem !important; }
+    .cr-review-card__headline { font-size: 1.7rem !important; }
+    .cr-reviews { padding: 6rem 0 5rem !important; }
+    .cr-reviews__nav { gap: 1.6rem !important; margin-top: 2.4rem !important; }
+    .cr-reviews__btn { width: 4.8rem !important; height: 4.8rem !important; }
+  }
+</style>
+
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var el = document.querySelector('#cr-reviews-{{ section.id }} .cr-reviews__swiper');
+  if (!el || typeof Swiper === 'undefined') {
+    setTimeout(function() {
+      var el2 = document.querySelector('#cr-reviews-{{ section.id }} .cr-reviews__swiper');
+      if (el2 && typeof Swiper !== 'undefined') initCrSwiper(el2);
+    }, 800);
+    return;
+  }
+  initCrSwiper(el);
+  function initCrSwiper(swEl) {
+    new Swiper(swEl, {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      autoplay: { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true },
+      speed: 800,
+      pagination: {
+        el: swEl.closest('.cr-reviews__slider-wrap').querySelector('.cr-reviews__pagination'),
+        clickable: true
+      },
+      navigation: {
+        prevEl: swEl.closest('.cr-reviews__slider-wrap').querySelector('.cr-reviews__btn--prev'),
+        nextEl: swEl.closest('.cr-reviews__slider-wrap').querySelector('.cr-reviews__btn--next')
+      },
+      breakpoints: {
+        750: { slidesPerView: 2, spaceBetween: 28 },
+        990: { slidesPerView: 3, spaceBetween: 32 }
+      }
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "CR — Reseñas de Producto",
+  "tag": "section",
+  "class": "section cr-product-reviews-section",
+  "max_blocks": 30,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Añade reseñas reales de tus clientas. Se muestran en un carrusel automático de lujo."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Reseña",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Valoración (estrellas)",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "headline",
+          "label": "Título de la reseña",
+          "default": "Una experiencia increíble"
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Nombre de la clienta",
+          "default": "María G."
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Ciudad / País",
+          "default": "Madrid, España"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Fecha",
+          "default": "Abril 2026"
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Texto de la reseña",
+          "default": "Una calidad increíble, la tela es suave y el diseño es exactamente como en las fotos. Lo recomiendo sin dudarlo."
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Compra verificada",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CR — Reseñas de Producto",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "Envío rápido y atención excelente",
+            "reviewer_name": "Beatriz H.",
+            "location": "Barcelona, España",
+            "date": "Marzo 2026",
+            "review_text": "El envío fue súper rápido y la atención fue de lo mejor. La prenda en persona es todavía más bonita que en las fotos.",
+            "verified": true
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "headline": "Superó todas mis expectativas",
+            "reviewer_name": "Tatiana J.",
+            "location": "Valencia, España",
+            "date": "Febrero 2026",
+            "review_text": "Buscaba algo original y de buena calidad y superó mis expectativas. El tejido es muy suave al tacto y el corte me favorece muchísimo.",
+            "verified": true
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "Calidad premium, repetiré seguro",
+            "reviewer_name": "Lidia V.",
+            "location": "Madrid, España",
+            "date": "Enero 2026",
+            "review_text": "La tela se siente súper premium y los detalles vienen tal cual se ven en las fotos. ¡Repetiré seguro!",
+            "verified": true
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "headline": "La guía de tallas es perfecta",
+            "reviewer_name": "Barbara W.",
+            "location": "Sevilla, España",
+            "date": "Abril 2026",
+            "review_text": "Tenía miedo por la talla pero seguí la guía y me quedó perfecta. El corte es muy favorecedor.",
+            "verified": true
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 3,
+            "headline": "Diseño y comodidad que enamoran",
+            "reviewer_name": "Tania E.",
+            "location": "Bilbao, España",
+            "date": "Marzo 2026",
+            "review_text": "Me encanta cómo queda puesto, el diseño es tal cual la descripción. ¡Súper recomendados!",
+            "verified": true
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "Elegancia y comodidad en cada pieza",
+            "reviewer_name": "Carmen R.",
+            "location": "Málaga, España",
+            "date": "Abril 2026",
+            "review_text": "Clara Reyes lo ha conseguido: elegancia y comodidad en cada pieza. Cada prenda parece diseñada a medida para ti.",
+            "verified": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,50 @@
+{{ 'clara-reyes-luxury.css' | asset_url | stylesheet_tag }}
+
+<div class="cr-marquee">
+  <div class="cr-marquee__track">
+    {%- for i in (1..4) -%}
+      {%- for block in section.blocks -%}
+        <span class="cr-marquee__item" {{ block.shopify_attributes }}>
+          {{ block.settings.text }}
+          <span class="cr-marquee__dot"></span>
+        </span>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CR — Marquee",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Texto",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "El lujo que mereces"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CR — Marquee",
+      "blocks": [
+        { "type": "item", "settings": { "text": "El lujo que mereces" } },
+        { "type": "item", "settings": { "text": "La elegancia que te define" } },
+        { "type": "item", "settings": { "text": "Clara Reyes" } },
+        { "type": "item", "settings": { "text": "Nueva Colección 2026" } },
+        { "type": "item", "settings": { "text": "Moda de lujo" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

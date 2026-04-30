@@ -1,0 +1,163 @@
+{{ 'clara-reyes-luxury.css' | asset_url | stylesheet_tag }}
+
+<section class="cr-hero{% if settings.animations_reveal_on_scroll %} scroll-trigger{% endif %}" id="cr-hero-{{ section.id }}">
+  <div class="cr-hero__media">
+    {%- if section.settings.hero_video != blank -%}
+      <video class="cr-hero__video" autoplay muted loop playsinline preload="auto">
+        <source src="{{ section.settings.hero_video }}" type="video/mp4">
+      </video>
+    {%- elsif section.settings.hero_video_asset != blank -%}
+      <video class="cr-hero__video" autoplay muted loop playsinline preload="auto">
+        <source src="{{ section.settings.hero_video_asset | asset_url }}" type="video/mp4">
+      </video>
+    {%- elsif section.settings.hero_image != blank -%}
+      {{
+        section.settings.hero_image
+        | image_url: width: 2400
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          class: 'cr-hero__img',
+          alt: section.settings.hero_image.alt
+      }}
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg cr-hero__placeholder' }}
+    {%- endif -%}
+  </div>
+
+  <div class="cr-hero__overlay"></div>
+
+  <div class="cr-hero__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="cr-hero__eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h1 class="cr-hero__title" data-cr-reveal="chars">{{ section.settings.title }}</h1>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="cr-hero__sub">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    <div class="cr-hero__actions">
+      {%- if section.settings.cta_label != blank -%}
+        <a href="{{ section.settings.cta_url }}" class="cr-hero__cta">
+          {{ section.settings.cta_label }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.cta_label_2 != blank -%}
+        <a href="{{ section.settings.cta_url_2 }}" class="cr-hero__link">
+          {{ section.settings.cta_label_2 }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="cr-hero__scroll">
+    <span class="cr-hero__scroll-text">Scroll</span>
+    <div class="cr-hero__scroll-line"></div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    var hero = document.getElementById('cr-hero-{{ section.id }}');
+    if (!hero) return;
+    window.addEventListener('load', function() {
+      hero.classList.add('page-loaded');
+      setTimeout(function() { hero.classList.add('cr-revealed'); }, 100);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "CR — Hero de Lujo",
+  "tag": "section",
+  "class": "section cr-hero-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Imagen / Vídeo"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Imagen de fondo"
+    },
+    {
+      "type": "text",
+      "id": "hero_video",
+      "label": "URL del vídeo — Shopify Files (mp4)",
+      "info": "Sube el vídeo en Admin → Archivos, copia la URL CDN y pégala aquí"
+    },
+    {
+      "type": "text",
+      "id": "hero_video_asset",
+      "label": "Nombre del vídeo — Assets del tema (mp4)",
+      "info": "Si subiste el vídeo a los assets del tema, escribe solo el nombre: hero.mp4"
+    },
+    {
+      "type": "header",
+      "content": "Texto"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño superior",
+      "default": "Nueva Colección 2026"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título principal",
+      "default": "Clara Reyes"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "El lujo que mereces. La elegancia que te define."
+    },
+    {
+      "type": "header",
+      "content": "Botones"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texto botón principal",
+      "default": "Explorar Colección"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Enlace botón principal"
+    },
+    {
+      "type": "text",
+      "id": "cta_label_2",
+      "label": "Texto enlace secundario",
+      "default": "Nuestra Historia"
+    },
+    {
+      "type": "url",
+      "id": "cta_url_2",
+      "label": "Enlace secundario"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CR — Hero de Lujo",
+      "settings": {
+        "eyebrow": "Nueva Colección 2026",
+        "title": "El lujo que mereces",
+        "subtitle": "Piezas únicas diseñadas para mujeres que saben lo que quieren. Clara Reyes.",
+        "cta_label": "Explorar Colección",
+        "cta_label_2": "Descubrir más"
+      }
+    }
+  ]
+}
+{% endschema %}

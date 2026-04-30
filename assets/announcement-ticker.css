@@ -1,0 +1,24 @@
+.announcement-bar--ticker {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.announcement-bar__track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: ticker-left 18s linear infinite;
+  will-change: transform;
+}
+.announcement-bar__item {
+  flex-shrink: 0;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+@keyframes ticker-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
+}
