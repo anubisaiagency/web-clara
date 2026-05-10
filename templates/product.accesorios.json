@@ -89,7 +89,7 @@
         "color_scheme": "scheme-1",
         "media_size": "large",
         "constrain_to_viewport": true,
-        "media_fit": "contain",
+        "media_fit": "cover",
         "gallery_layout": "stacked",
         "mobile_thumbnails": "hide",
         "media_position": "left",
@@ -343,6 +343,78 @@
             "review_text": "Llevo seis meses usando este bolso casi a diario y no tiene ningun signo de desgaste. La piel ha ganado caracter con el uso. Una pieza para toda la vida.",
             "verified": true
           }
+        },
+        "review_a7": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "Lo uso a diario, no se deteriora",
+            "reviewer_name": "Paola S.",
+            "date": "Mayo 2026",
+            "location": "Alicante, Espana",
+            "review_text": "Llevo usandolo cada dia cuatro meses y la piel se ve igual que el primer dia. Si acaso ha ganado un brillo natural precioso. Sin duda la mejor inversion de este ano.",
+            "verified": true
+          }
+        },
+        "review_a8": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "El cierre magnetico es suave y preciso",
+            "reviewer_name": "Victoria T.",
+            "date": "Abril 2026",
+            "location": "Zaragoza, Espana",
+            "review_text": "Los pequenos detalles marcan la diferencia: el cierre magnetico entra perfectamente, la cremallera interior desliza sin esfuerzo. Es un producto hecho con verdadero cuidado.",
+            "verified": true
+          }
+        },
+        "review_a9": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "Regalo perfecto, mi amiga lloro de emocion",
+            "reviewer_name": "Carla U.",
+            "date": "Abril 2026",
+            "location": "Granada, Espana",
+            "review_text": "Lo compre como regalo de cumpleanos para mi mejor amiga. Vino en una caja preciosa con papel de seda. Cuando lo abrio se quedo sin palabras. Repetire en cada cumpleanos.",
+            "verified": true
+          }
+        },
+        "review_a10": {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "headline": "La correa ajustable es un gran detalle",
+            "reviewer_name": "Mia V.",
+            "date": "Mayo 2026",
+            "location": "Murcia, Espana",
+            "review_text": "La correa larga ajustable le da muchisima versatilidad: lo llevo cruzado en el cuerpo o colgado al hombro segun el dia. El interior forrado en suede es un lujo.",
+            "verified": true
+          }
+        },
+        "review_a11": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "El embalaje en si ya es un regalo",
+            "reviewer_name": "Helena W.",
+            "date": "Abril 2026",
+            "location": "Pamplona, Espana",
+            "review_text": "El bolso llego en una caja rigida con papel de seda, una bolsa de tela y una tarjeta manuscrita. Cada detalle del unboxing estaba cuidado. Y el bolso en si supero todas las expectativas.",
+            "verified": true
+          }
+        },
+        "review_a12": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "No hay nada igual en el mercado a este precio",
+            "reviewer_name": "Claudia X.",
+            "date": "Mayo 2026",
+            "location": "Cordoba, Espana",
+            "review_text": "He comparado con bolsos de marcas tres veces mas caras y la calidad de este es comparable o superior. La piel es autentica, los herrajes son solidos y el diseno es atemporal.",
+            "verified": true
+          }
         }
       },
       "block_order": [
@@ -351,7 +423,13 @@
         "review_a3",
         "review_a4",
         "review_a5",
-        "review_a6"
+        "review_a6",
+        "review_a7",
+        "review_a8",
+        "review_a9",
+        "review_a10",
+        "review_a11",
+        "review_a12"
       ],
       "type": "cr-product-reviews",
       "settings": {}

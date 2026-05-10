@@ -1,3 +1,27 @@
+<div id="cr-promo-bar" style="background:#1c1b1b;color:#fff;padding:1rem 2rem;text-align:center;font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:2.4rem;flex-wrap:wrap;width:100%;box-sizing:border-box;position:relative;z-index:10;">
+  <span style="opacity:0.65;font-size:0.9rem;letter-spacing:0.2em;">Oferta exclusiva &middot; Tiempo limitado</span>
+  <span style="border:1px solid rgba(255,255,255,0.25);padding:0.35rem 1.4rem;letter-spacing:0.2em;">15% dto. &mdash; c&oacute;digo <strong style="color:#fff;font-weight:700;letter-spacing:0.15em;">CLARA</strong></span>
+  <span id="cr-promo-countdown" style="font-variant-numeric:tabular-nums;opacity:0.8;letter-spacing:0.08em;font-size:0.95rem;min-width:14ch;display:inline-block;text-align:left;"></span>
+</div>
+<script>
+(function(){
+  var endDate = new Date('2026-06-09T00:00:00+02:00').getTime();
+  function pad(n){return n<10?'0'+n:n;}
+  function tick(){
+    var el = document.getElementById('cr-promo-countdown');
+    if(!el) return;
+    var diff = endDate - Date.now();
+    if(diff <= 0){ el.textContent = 'Oferta finalizada'; return; }
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor((diff%86400000)/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    el.textContent = d+'d '+pad(h)+'h '+pad(m)+'m '+pad(s)+'s';
+  }
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'announcement-ticker.css' | asset_url | stylesheet_tag }}

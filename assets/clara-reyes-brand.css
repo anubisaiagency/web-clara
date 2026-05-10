@@ -787,6 +787,30 @@ select.localization-form__select {
   background-color: var(--cr-surface) !important;
 }
 
+/* ===== SQUARE PRODUCT IMAGES ===== */
+.card__media,
+.card__media .media {
+  aspect-ratio: 1 / 1 !important;
+  overflow: hidden !important;
+}
+.card__media img,
+.card__media video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+}
+.product__media-item .media {
+  aspect-ratio: 1 / 1 !important;
+  overflow: hidden !important;
+}
+.product__media-item img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+}
+
 .menu-drawer .header__heading-link {
   font-family: var(--cr-font-heading) !important;
 }

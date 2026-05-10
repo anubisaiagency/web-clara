@@ -89,7 +89,7 @@
         "color_scheme": "scheme-1",
         "media_size": "large",
         "constrain_to_viewport": true,
-        "media_fit": "contain",
+        "media_fit": "cover",
         "gallery_layout": "stacked",
         "mobile_thumbnails": "hide",
         "media_position": "left",
@@ -343,6 +343,78 @@
             "headline": "La guía de tallas es perfecta"
           },
           "type": "review"
+        },
+        "review_7": {
+          "settings": {
+            "verified": true,
+            "rating": 5,
+            "reviewer_name": "Natalia P.",
+            "date": "Mayo 2026",
+            "location": "Madrid, España",
+            "review_text": "La atención al cliente es excepcional. Tuve una duda sobre la talla y me respondieron en menos de una hora con fotos y recomendaciones personalizadas. Un servicio de lujo.",
+            "headline": "Atención al cliente de lujo"
+          },
+          "type": "review"
+        },
+        "review_8": {
+          "settings": {
+            "verified": true,
+            "rating": 5,
+            "reviewer_name": "Laura M.",
+            "date": "Abril 2026",
+            "location": "Barcelona, España",
+            "review_text": "La calidad del tejido es notablemente superior a lo que cuesta. Me la recomendó una amiga y ya he recomendado Clara Reyes a otras cinco personas de mi entorno.",
+            "headline": "Calidad muy por encima del precio"
+          },
+          "type": "review"
+        },
+        "review_9": {
+          "settings": {
+            "verified": true,
+            "rating": 5,
+            "reviewer_name": "Sandra R.",
+            "date": "Mayo 2026",
+            "location": "Valencia, España",
+            "review_text": "Compré por primera vez con algo de miedo por ser online pero la experiencia fue perfecta. La prenda llegó preciosa, bien embalada y coincide exactamente con las fotos.",
+            "headline": "Primera compra online y conquistada"
+          },
+          "type": "review"
+        },
+        "review_10": {
+          "settings": {
+            "verified": true,
+            "rating": 4,
+            "reviewer_name": "Concha D.",
+            "date": "Marzo 2026",
+            "location": "Bilbao, España",
+            "review_text": "El diseño es muy cuidado y los acabados son impecables. Se nota que hay detrás un equipo con gusto y conocimiento del sector moda. Compraré más sin duda.",
+            "headline": "Diseño y acabados de alta moda"
+          },
+          "type": "review"
+        },
+        "review_11": {
+          "settings": {
+            "verified": true,
+            "rating": 5,
+            "reviewer_name": "Raquel F.",
+            "date": "Mayo 2026",
+            "location": "Málaga, España",
+            "review_text": "Llevo años buscando prendas con esta combinación de elegancia y comodidad. Clara Reyes lo ha conseguido. Cada pieza parece diseñada pensando en quien la va a llevar.",
+            "headline": "Elegancia y comodidad por fin juntas"
+          },
+          "type": "review"
+        },
+        "review_12": {
+          "settings": {
+            "verified": true,
+            "rating": 5,
+            "reviewer_name": "Verónica S.",
+            "date": "Abril 2026",
+            "location": "Alicante, España",
+            "review_text": "El embalaje es tan bonito que da pena abrirlo. La pieza dentro es todavía más bonita. Cada detalle comunica que es una marca que cuida de sus clientas. Repetidora segura.",
+            "headline": "Desde el embalaje hasta la prenda, perfección"
+          },
+          "type": "review"
         }
       },
       "block_order": [
@@ -351,7 +423,13 @@
         "review_3",
         "review_4",
         "review_5",
-        "review_6"
+        "review_6",
+        "review_7",
+        "review_8",
+        "review_9",
+        "review_10",
+        "review_11",
+        "review_12"
       ],
       "type": "cr-product-reviews",
       "settings": {}

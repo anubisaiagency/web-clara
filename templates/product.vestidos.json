@@ -89,7 +89,7 @@
         "color_scheme": "scheme-1",
         "media_size": "large",
         "constrain_to_viewport": true,
-        "media_fit": "contain",
+        "media_fit": "cover",
         "gallery_layout": "stacked",
         "mobile_thumbnails": "hide",
         "media_position": "left",
@@ -343,6 +343,78 @@
             "review_text": "Llevaba tiempo buscando el vestido perfecto para una noche especial y este lo es. El forro interior es sedoso y el largo queda ideal. Compra 100% recomendada.",
             "verified": true
           }
+        },
+        "review_v7": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "El tejido cae como la seda",
+            "reviewer_name": "Carmen L.",
+            "date": "Abril 2026",
+            "location": "Zaragoza, Espana",
+            "review_text": "El tejido cae de manera impecable con cada movimiento. Me lo puse en una cena de empresa y recibi decenas de cumplidos. La cremallera invisible es un detalle de alta costura.",
+            "verified": true
+          }
+        },
+        "review_v8": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "El corte es simplemente perfecto",
+            "reviewer_name": "Lucia G.",
+            "date": "Febrero 2026",
+            "location": "Alicante, Espana",
+            "review_text": "El corte en la cintura es muy favorecedor para cualquier tipo de cuerpo. La falda tiene el vuelo justo para caminar con elegancia. Talla perfecta siguiendo la guia.",
+            "verified": true
+          }
+        },
+        "review_v9": {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "headline": "La costura interior es impecable",
+            "reviewer_name": "Maria T.",
+            "date": "Enero 2026",
+            "location": "Granada, Espana",
+            "review_text": "Lo que mas me sorprendio fue la calidad de las costuras interiores, algo que pocas marcas cuidan. El vestido llegó en una bolsa de tela reutilizable muy bonita.",
+            "verified": true
+          }
+        },
+        "review_v10": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "Mi segunda compra, no sera la ultima",
+            "reviewer_name": "Rebeca A.",
+            "date": "Mayo 2026",
+            "location": "Murcia, Espana",
+            "review_text": "Ya tengo dos vestidos de Clara Reyes y no podria estar mas contenta. El primero fue tal casualidad y el segundo fue buscado. Los dos tienen una calidad excepcional.",
+            "verified": true
+          }
+        },
+        "review_v11": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "Llego antes de lo esperado y perfecto",
+            "reviewer_name": "Elena B.",
+            "date": "Abril 2026",
+            "location": "Pamplona, Espana",
+            "review_text": "El envio fue rapidisimo, en 48 horas lo tenia en casa perfectamente doblado y sin ninguna arruga. El vestido es precioso y coincide exactamente con las fotos.",
+            "verified": true
+          }
+        },
+        "review_v12": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "El color en persona es impresionante",
+            "reviewer_name": "Cristina N.",
+            "date": "Mayo 2026",
+            "location": "San Sebastian, Espana",
+            "review_text": "El color del vestido en persona es mucho mas rico y profundo que en la pantalla. La tela tiene un tacto aterciopelado que lo hace completamente diferente a cualquier otra opcion del mercado.",
+            "verified": true
+          }
         }
       },
       "block_order": [
@@ -351,7 +423,13 @@
         "review_v3",
         "review_v4",
         "review_v5",
-        "review_v6"
+        "review_v6",
+        "review_v7",
+        "review_v8",
+        "review_v9",
+        "review_v10",
+        "review_v11",
+        "review_v12"
       ],
       "type": "cr-product-reviews",
       "settings": {}

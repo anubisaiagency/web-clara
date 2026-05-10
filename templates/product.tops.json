@@ -89,7 +89,7 @@
         "color_scheme": "scheme-1",
         "media_size": "large",
         "constrain_to_viewport": true,
-        "media_fit": "contain",
+        "media_fit": "cover",
         "gallery_layout": "stacked",
         "mobile_thumbnails": "hide",
         "media_position": "left",
@@ -343,6 +343,78 @@
             "review_text": "Ya tengo tres piezas de Clara Reyes y esta blusa es mi favorita. La relacion calidad-precio es inmejorable para una prenda de esta categoria.",
             "verified": true
           }
+        },
+        "review_t7": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "No da calor ni en verano",
+            "reviewer_name": "Ana C.",
+            "date": "Mayo 2026",
+            "location": "Zaragoza, Espana",
+            "review_text": "Lo use en plena primavera y el tejido es muy transpirable. Nada que ver con otras blusas sinteticas. Esta claro que la materia prima es de primera calidad.",
+            "verified": true
+          }
+        },
+        "review_t8": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "No pierde la forma tras el lavado",
+            "reviewer_name": "Irene G.",
+            "date": "Abril 2026",
+            "location": "Alicante, Espana",
+            "review_text": "Lo he lavado ya muchas veces y mantiene perfectamente su forma y su color. Sin encogimiento ni deformacion. Una prenda que de verdad dura.",
+            "verified": true
+          }
+        },
+        "review_t9": {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "headline": "Me la puse el primer dia y ya quiero otra",
+            "reviewer_name": "Pilar H.",
+            "date": "Marzo 2026",
+            "location": "Granada, Espana",
+            "review_text": "Desde el primer dia que me la puse no pude dejar de pensar en comprar mas. El escote en V es muy elegante y estiliza la figura de manera increible.",
+            "verified": true
+          }
+        },
+        "review_t10": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "El blanco crema es absolutamente precioso",
+            "reviewer_name": "Teresa M.",
+            "date": "Mayo 2026",
+            "location": "Murcia, Espana",
+            "review_text": "El tono blanco crema es mucho mas sofisticado que un blanco puro. Se puede usar a cualquier hora del dia y con cualquier complemento. Una compra que aconsejo a todas.",
+            "verified": true
+          }
+        },
+        "review_t11": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "Tela de categoria superior",
+            "reviewer_name": "Silvia K.",
+            "date": "Abril 2026",
+            "location": "Pamplona, Espana",
+            "review_text": "He trabajado en el sector textil y reconozco la calidad de la tela desde el primer toque. Clara Reyes usa materiales que encontrarias en marcas de lujo a diez veces el precio.",
+            "verified": true
+          }
+        },
+        "review_t12": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "headline": "Perfecta para el trabajo y la noche",
+            "reviewer_name": "Beatriz L.",
+            "date": "Mayo 2026",
+            "location": "Valladolid, Espana",
+            "review_text": "Esta blusa es tan versatil que la llevo al trabajo y luego a cenar sin cambiarme. Solo cambio los complementos y el resultado es completamente diferente. Un tesoro en el armario.",
+            "verified": true
+          }
         }
       },
       "block_order": [
@@ -351,7 +423,13 @@
         "review_t3",
         "review_t4",
         "review_t5",
-        "review_t6"
+        "review_t6",
+        "review_t7",
+        "review_t8",
+        "review_t9",
+        "review_t10",
+        "review_t11",
+        "review_t12"
       ],
       "type": "cr-product-reviews",
       "settings": {}
